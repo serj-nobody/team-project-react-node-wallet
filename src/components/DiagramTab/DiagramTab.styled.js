@@ -5,12 +5,14 @@ export const Container = styled.div`
   display:flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 28px;
 
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+    padding-top: 0;
   }
 
   @media screen and (min-width: 1280px) {

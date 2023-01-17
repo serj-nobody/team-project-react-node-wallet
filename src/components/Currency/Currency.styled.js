@@ -3,7 +3,6 @@ import backgroundImg from '../../images/photo/backgroundcurr.png';
 
 export const ContainerStyled = styled.div`
   padding-top: 20px;
-  /* display: flex; */
 
   @media screen and (min-width: 1280px) {
     display: flex;
@@ -14,9 +13,11 @@ export const ContainerStyled = styled.div`
 
 export const Wrapper = styled.div`
   height: calc(100vh - 156px);
+  padding-top: 28px;
 
   @media screen and (min-width: 768px) {
     height: 100%;
+    padding-top: 0; 
   }
 `;
 

@@ -4,6 +4,7 @@ import TabletTab from './TabletTab/TabletTab';
 import Media from 'react-media';
 import { ButtonCircle } from 'components/ButtonCircle/ButtonCircle';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
+import { AiOutlinePlus } from "react-icons/ai";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransactions } from 'redux/transactions/transactions-operation';
@@ -41,70 +42,98 @@ const HomeTab = () => {
   const totalPages = Math.ceil(transactionsTotalQuantity / transactionsPerPage);
   const totalPagesInteger = totalPages ? totalPages : 1;
 
-  return (
-    <Con>
-      <Media
-        queries={{
-          small: '(max-width: 767px)',
-          medium: '(min-width: 768px) and (max-width: 1279px)',
-          large: '(min-width: 1280px)',
-        }}
-      >
-        {matches => (
-          <Fragment>
-            {matches.small && <MobileCard items={data} columns={columns} />}
-            {matches.medium && <TabletTab items={data} columns={columns} />}
-            {matches.large && <TabletTab items={data} columns={columns} />}
-            {transactionsTotalQuantity > 10 ? (
-              <Paginate
-                count={totalPagesInteger}
-                page={page}
-                onChange={handleChange}
-              />
-            ) : null}
-          </Fragment>
+  return (  
+    <Wrapper>
+      <Container>
+        <Media
+          queries={{
+            small: '(max-width: 767px)',
+            medium: '(min-width: 768px) and (max-width: 1279px)',
+            large: '(min-width: 1280px)',
+          }}
+        >
+          {matches => (
+            <Fragment>
+              {matches.small && <MobileCard items={data} columns={columns} />}
+              {matches.medium && <TabletTab items={data} columns={columns} />}
+              {matches.large && <TabletTab items={data} columns={columns} />}
+              {transactionsTotalQuantity > 10 ? (
+                <Paginate
+                  count={totalPagesInteger}
+                  page={page}
+                  onChange={handleChange}
+                />
+              ) : null}
+            </Fragment>
+          )}
+        </Media>
+      </Container>
+      <ButtonCircle onClick={onModal}><AiOutlinePlus /></ButtonCircle>
+        {isModalOpen && (
+          <ModalAddTransaction toggleModal={onModal} isOpen={isModalOpen} />
         )}
-      </Media>
-
-      <ButtonCircle onClick={onModal}>+</ButtonCircle>
-      {isModalOpen && (
-        <ModalAddTransaction toggleModal={onModal} isOpen={isModalOpen} />
-      )}
-    </Con>
+    </Wrapper>
   );
 };
 
 export default HomeTab;
 
-const Con = styled.div`
+const Wrapper = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 70px;
+  height: calc(100vh - 128px);
 
   @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
-    height: 100%;
-    padding-bottom: 70px;
+    height: auto;
   }
 
   @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
-    padding-top: 32px;
+    height: 100%;
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
+    padding-bottom: 80px;
+  }
+
+  @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
+    padding-top: 46px;
     align-items: flex-end;
   }
 `;
+
 const Paginate = styled(Pagination)`
   position: absolute;
   bottom: 20px;
+  left: 140px;
+  transform: translateX(-50%);
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
-    width: 280px;
-  }
+  padding: 6px 0;
+  background-color: #fff;
+  border-radius: 22px;
+  box-shadow: 0px 6px 15px rgba(204, 204, 204, 0.5);
+
   @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
-    width: 704px;
+    left: 276px;
+    transform: translateX(0);
+    width: auto;
+    background-color: none;
   }
   @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
-    width: 715px;
+    
   }
+
+  /* ::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: 'red';
+
+  } */
 `;

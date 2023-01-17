@@ -6,9 +6,14 @@ export const Wrapper = styled.div`
   flex-direction: column;
   background: #ffffff;
   border-radius: 30px;
-  width: 336px;
+  width: 280px;
   position: relative;
   padding: 8px 40px 8px;
+  margin-bottom: 32px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+  }
 
   @media screen and (min-width: 1280px) {
     width: 395px;

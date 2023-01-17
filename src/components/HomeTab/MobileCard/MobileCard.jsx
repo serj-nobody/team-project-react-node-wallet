@@ -13,6 +13,7 @@ import {
   removeTransaction,
   fetchTransactionById,
 } from 'redux/transactions/transactions-operation';
+import { Balance } from 'components/Balance/Balance';
 import { Delete, Edit } from '@mui/icons-material';
 import { ModalEdit } from 'components/ModalEdit/ModalEdit';
 
@@ -47,6 +48,7 @@ const MobileCard = ({ items }) => {
 
   return (
     <>
+      <Balance />
       {items?.length !== 0 ? (
         <TransactionContainer>
           {items?.map(
@@ -154,14 +156,18 @@ const borderColor = type => {
 };
 
 const TransactionContainer = styled.div`
-  min-height: calc(100vh - 226px);
-  max-height: calc(100vh - 226px);
+  min-height: calc(100vh - 239px);
+  max-height: calc(100vh - 239px);
   overflow: hidden;
   overflow-y: scroll;
+  padding-bottom: 65px;
   @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
+    padding-bottom: 0px;
   }
 `;
 

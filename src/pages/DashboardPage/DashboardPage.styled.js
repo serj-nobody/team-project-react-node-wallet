@@ -2,12 +2,13 @@ import styled from 'styled-components';
 // import baseVars from '../../stylesheet/vars';
 
 export const MainWrapper = styled.div`
-  margin-bottom: 28px;
+  /* margin-bottom: 28px; */
   
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 20px;
   }
 
   @media screen and (min-width: 1280px) {
